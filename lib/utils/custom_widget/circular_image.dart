@@ -25,6 +25,7 @@ class CircleImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: press,
       child: border > 0
           ? ClipOval(

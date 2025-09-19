@@ -42,6 +42,7 @@ class AccountUserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         if (onTap != null) {
           onTap!();

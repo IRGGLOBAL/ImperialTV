@@ -177,6 +177,7 @@ class SmsVerificationScreen extends StatelessWidget {
                                           color: MyColor
                                               .getPrimaryColor()))
                                       : GestureDetector(
+                                    behavior: HitTestBehavior.translucent,
                                     onTap: () {},
                                     child: Text(
                                         "Resend".tr,

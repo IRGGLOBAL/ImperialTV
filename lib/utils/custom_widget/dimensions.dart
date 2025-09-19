@@ -9,6 +9,8 @@ class Dimensions {
 
   static const double fontDefault = 13.00;
 
+  static const double fontedium = 15.00;
+
   static const double fontMedium = 14.00;
 
   static const double fontLarge = 16.00;

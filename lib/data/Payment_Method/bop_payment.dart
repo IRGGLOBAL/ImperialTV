@@ -50,6 +50,7 @@ class BopPayment extends StatelessWidget {
                         height: Get.height * 0.04,
                       ),
                       GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () {
                             //controller.checkWalletAmount();
                           },
@@ -80,6 +81,7 @@ class BopPayment extends StatelessWidget {
                         height: 20,
                       ),
                       GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () async {
                             // var isSuccess = await controller
                             //     .createBOPSessionId();

@@ -50,6 +50,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               bottom: 0,
               right: -4,
               child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     _openGallery(context);
                   },

@@ -33,6 +33,7 @@ class _ImageSliderWithZoomState extends State<ImageSliderWithZoom> {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
               onTap: () => openFullScreen(currentIndex),
               child: SizedBox(
                 height: 200,

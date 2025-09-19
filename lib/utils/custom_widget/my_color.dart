@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyColor {
-  static const Color primaryColor = Color(0xff066583);
-  static const Color secondaryColor = Color(0xffE5C07B);
-  //Screen
+  static const Color primaryColor = Color(0xff0C1523);
+  static const Color secondaryColor = Color(0xffFF0000);
+  //Screens
   static const Color screenBgColor = Color(0xFFF8FAFC);
   //Card
   static const Color cardBgColor = Color(0xFFFFFFFF);
@@ -18,10 +18,11 @@ class MyColor {
   //Background
   static const Color colorcyan = Color(0xFF878E8E);
   static const Color bluesh = Color(0xff019DAE);
+  static const Color textcolorsubtitle = Color(0xFF667085);
 
 
   //Text
-  static const Color primaryTextColor = Color(0xff262626);
+  static const Color primaryTextColor = Color(0xff4C4C4C);
   static const Color primaryTextColor2 = Color(0xff2E3232);
   static const Color primaryTextColo3 = Color(0xff363536);
   static const Color text = Color(0xff2E3232);
@@ -66,7 +67,7 @@ class MyColor {
   static const Color filterIconColor = iconColor;
 
   static const Color colorWhite = Color(0xffFFFFFF);
-  static const Color colorBlack = Color(0xff262626);
+  static const Color colorBlack = Color(0xff000000);
   static const Color colorGreen = Color(0xff28C76F);
   static const Color colorRed = Color(0xFFD92027);
   static const Color colorOrangemat = Color(0xFFF16224);

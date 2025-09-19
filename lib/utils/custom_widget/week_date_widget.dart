@@ -37,6 +37,7 @@ class _WeekDatePickerState extends State<WeekDatePicker> {
             final isSelected = selectedIndex.value == index;
 
             return GestureDetector(
+              behavior: HitTestBehavior.translucent,
               onTap: () => selectedIndex.value = index,
               child: Container(
                 width: 60,

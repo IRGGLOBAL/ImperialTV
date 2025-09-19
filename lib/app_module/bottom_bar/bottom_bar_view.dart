@@ -36,6 +36,7 @@ class CustomBottomBar extends StatelessWidget {
           children: List.generate(iconPaths.length, (index) {
             final isSelected = controller.selectedIndex.value == index;
             return GestureDetector(
+              behavior: HitTestBehavior.translucent,
               onTap: () {},
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 200),

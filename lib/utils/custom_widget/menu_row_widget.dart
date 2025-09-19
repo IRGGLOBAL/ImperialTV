@@ -33,6 +33,7 @@ class MenuRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: onPressed,
       child: Container(
         width: MediaQuery.of(context).size.width,

@@ -110,6 +110,7 @@ class PrimaryAppBar extends StatelessWidget {
                     ? Row(
                         children: [
                           GestureDetector(
+                            behavior: HitTestBehavior.translucent,
                             onTap: () {
                               Get.back();
                             },
@@ -130,12 +131,14 @@ class PrimaryAppBar extends StatelessWidget {
                 isCenter ? Spacer() : Container(),
                 isSubTitle
                     ? GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                         onTap: dropOnTap ?? () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GestureDetector(
+                              behavior: HitTestBehavior.translucent,
                               onTap: dropOnTap ?? () {},
                               child: Row(
                                 children: [
@@ -257,6 +260,7 @@ class AppCircleImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: onTap,
       child: Container(
         height: height,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../../utils/Images/my_images.dart';
 import '../../../utils/Paddings/AppPaddings.dart';
 import '../../../utils/Widgets/AppText.dart';
 import '../../../utils/custom_widget/my_color.dart';
@@ -19,20 +21,41 @@ class SplashView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: MyColor.colorWhite,
-      body: Container(
-        width: Get.width,
-        height: Get.height,
-        child: Padding(
-          padding: AppPaddings.defaultPadding,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AppText(text: "Splash Screen")
-            ],
+      body:   Stack(
+        children: [
+          Positioned.fill(
+            child:
+            Opacity(
+                opacity: 1,
+                child:
+                Image.asset(
+                  MyImages.splashscreen,
+                  fit: BoxFit.fill,
+                ),
+            )
           ),
-        ),
+
+          Align(
+              alignment: Alignment.center,
+              child: SvgPicture.asset(MyImages.appLogo,
+                  height: 60, width: 60)),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: AppText(
+                    text: "App Version 3.4",
+                  size: 14,
+                  fontWeight: FontWeight.w500,
+                  color: MyColor.colorWhite
+                ),
+              )
+              ),
+        ],
       ),
     );
   }
 }
+
+
+

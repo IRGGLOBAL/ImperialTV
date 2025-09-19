@@ -35,6 +35,7 @@ Widget pickImageWidget({
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: onGalleryTap,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -61,6 +62,7 @@ Widget pickImageWidget({
                   ),
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: onCameraTap,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

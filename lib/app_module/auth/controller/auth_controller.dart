@@ -17,6 +17,7 @@ class AuthController extends GetxController {
   bool resendLoading = false;
 
   TextEditingController emailOrUsernameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -26,6 +27,7 @@ class AuthController extends GetxController {
   final FocusNode passwordFocusNode = FocusNode();
   final FocusNode lastNameFocusNode = FocusNode();
   final FocusNode firstNameFocusNode = FocusNode();
+  final FocusNode phoneFocusNode = FocusNode();
 
 
   bool checkPasswordStrength = false;
