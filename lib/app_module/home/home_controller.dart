@@ -157,5 +157,26 @@ class HomeController extends GetxController {
     }
   }
 
+  ///home
+
+  final PageController pageController = PageController();
+  final currentPage = 0.obs; // Observable variable
+
+  void changePage(int index) {
+    currentPage.value = index;
+  }
+
+  ///Movie detail
+
+  var selectedTab = 0.obs;
+  var isSynopsisExpanded = false.obs; // Add this line
+
+  void changeTab(int index) {
+    selectedTab.value = index;
+  }
+
+  void toggleSynopsis() { // Add this method
+    isSynopsisExpanded.value = !isSynopsisExpanded.value;
+  }
 
 }

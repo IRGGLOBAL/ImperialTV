@@ -12,7 +12,7 @@ class MyColor {
   static const Color buttonbackgrounlight = Color(0xffEAF1F6);
   static const Color buttonbackgrounlightgrey = Color(0xff999999);
   static const Color buttontextlightgrey = Color(0xffFCFCFC);
-  static const Color buttontextlightblue = Color(0xff3EC0CE);
+  static const Color buttontextlightblue = Color(0xff61C8C2);
 
 
   //Background

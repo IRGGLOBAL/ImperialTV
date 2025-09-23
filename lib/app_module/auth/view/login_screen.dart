@@ -8,6 +8,7 @@ import '../../../utils/custom_widget/dimensions.dart';
 import '../../../utils/custom_widget/my_color.dart';
 import '../../../utils/custom_widget/style.dart';
 import '../../../utils/text_strings.dart';
+import '../../home/home_content_view.dart';
 import '../controller/auth_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Add this import for your custom button
@@ -81,6 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: MyColor.colorWhite,
                           fontSize: Dimensions.fontMedium,
                         ),
+                        onTap: (){
+                          Get.to(()=> HomeContentView());
+                        }
                       ),
                     ),
                     const SizedBox(height: 14),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:imperialtv/app_module/auth/view/scan_face_view.dart';
 import 'package:imperialtv/app_module/auth/view/sms_verification_screen.dart';
 import 'package:imperialtv/utils/text_strings.dart';
 import '../../../utils/Images/my_images.dart';
@@ -20,105 +21,119 @@ class EnableFaceId extends StatefulWidget {
 }
 
 class _EnableFaceIdState extends State<EnableFaceId> {
-  bool agreed = false;
 
+  bool agreed = false;
   final AuthController controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(16, 18, 16, 20),
-                decoration: BoxDecoration(
-                  color: MyColor.colorWhite,
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                  children: [
-
-                    SvgPicture.asset(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // This is important for centering
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(16, 18, 16, 20),
+                  decoration: BoxDecoration(
+                    color: MyColor.colorWhite,
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
                         MyImages.enablefaceid,
-                        // height: 100,
-                        // width: 100,
+                        width: 100,
+                        height: 107,
+                        fit: BoxFit.contain,
                       ),
-
-
-
-                    const SizedBox(height: 6),
-                    // Sign Up button (red pill)
-                    AppButton(
-                      buttonName: MyStrings.signup.tr,
-                      buttonColor: MyColor.secondaryColor,
-                      textColor: MyColor.colorWhite,
-                      textSize: Dimensions.fontedium,
-                      fontWeight: FontWeight.w600,
-                      hasShadow: false,
-                      buttonWidth: double.infinity,
-                      buttonHeight: 50,
-                      onTap: () {
-                        if (agreed) {
-                          Get.to(() => const SmsVerificationScreen());
-                        }
-                      },
-                      elevation: 0,
-                      borderWidth: 1,
-                      borderColor: Colors.white,
-                      isCenter: true,
-                      buttonRadius: BorderRadius.circular(30), // Stadium shape
-                    ),
-
-                    const SizedBox(height: 12),
-                    // Google button
-                    InkWell(
-                      onTap: () => controller.continueWithGoogle(),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppText(
-                              text: MyStrings.maybelater.tr,
-                              style: mediumOverLarge.copyWith(
-                                color: MyColor.primaryColor,
-                                fontSize: Dimensions.fontMedium,
-                                fontWeight: FontWeight.w600,
+                      const SizedBox(height: 15),
+                      AppText(
+                          text: MyStrings.enablefaceidforquick.tr,
+                          style: semiBoldMediumLarge.copyWith(
+                              color: MyColor.primaryColor,
+                              fontSize: Dimensions.fontLarge + 1,
+                              height: 1.5,
+                              fontWeight: FontWeight.w600
+                          ),
+                          textAlign: TextAlign.center
+                      ),
+                      AppText(
+                          text: MyStrings.protectyouraccountwithface.tr,
+                          style: semiBoldMediumLarge.copyWith(
+                              color: MyColor.secondaryColor,
+                              fontSize: Dimensions.fontDefault + 1,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400
+                          ),
+                          textAlign: TextAlign.center
+                      ),
+                      const SizedBox(height: 60),
+                      // Sign Up button (red pill)
+                      AppButton(
+                        buttonName: MyStrings.nctivatenow.tr,
+                        buttonColor: MyColor.secondaryColor,
+                        textColor: MyColor.colorWhite,
+                        textSize: Dimensions.fontedium,
+                        fontWeight: FontWeight.w600,
+                        hasShadow: false,
+                        buttonWidth: double.infinity,
+                        buttonHeight: 50,
+                        onTap: () {
+                          Get.to(()=> ScanFaceView());
+                          // if (agreed) {
+                          //   Get.to(() => const SmsVerificationScreen());
+                          // }
+                        },
+                        elevation: 0,
+                        borderWidth: 1,
+                        borderColor: Colors.white,
+                        isCenter: true,
+                        buttonRadius: BorderRadius.circular(30),
+                      ),
+                      const SizedBox(height: 12),
+                      // Google button
+                      InkWell(
+                        onTap: () => controller.continueWithGoogle(),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AppText(
+                                text: MyStrings.maybelater.tr,
+                                style: mediumOverLarge.copyWith(
+                                  color: MyColor.primaryColor,
+                                  fontSize: Dimensions.fontMedium,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-
-
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+      )
     );
   }
 
 }
+
+

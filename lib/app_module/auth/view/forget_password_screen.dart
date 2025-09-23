@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imperialtv/app_module/auth/view/signup_screen.dart';
+import 'package:imperialtv/app_module/auth/view/sms_verification_screen.dart';
 import '../../../Utils/app_imports/app_imports.dart';
 import '../../../utils/Images/my_images.dart';
 import '../../../utils/Widgets/AppButton.dart';
@@ -124,7 +125,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                               buttonHeight: 50,
                               onTap: () {
                                 if (_formKey.currentState!.validate()) {
-                                  //auth.submitForgetPassCode();
+                                  Get.to(()=>SmsVerificationScreen());
                                 }
                               },
                               elevation: 0,

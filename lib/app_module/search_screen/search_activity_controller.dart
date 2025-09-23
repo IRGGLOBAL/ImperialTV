@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:imperialtv/utils/Images/my_images.dart';
 
-class SearchController extends GetxController {
+class SearchActivityController extends GetxController {
   var recentSearches = [
     "Captain Larvem",
     "Final Vacation",
@@ -13,21 +14,21 @@ class SearchController extends GetxController {
       "year": "2022",
       "rating": "21+",
       "genre": "Thriller - Horror - Murder",
-      "poster": "assets/images/hunt.png",
+      "poster":MyImages.topbanner,
     },
     {
       "title": "The Lost City",
       "year": "2022",
       "rating": "13+",
       "genre": "Thriller - Horror - Murder",
-      "poster": "assets/images/lostcity.png",
+      "poster": MyImages.topbannertwo,
     },
     {
       "title": "Venom",
       "year": "2022",
       "rating": "17+",
       "genre": "Thriller - Horror - Murder",
-      "poster": "assets/images/venom.png",
+      "poster": MyImages.topbannerthree,
     },
   ].obs;
 }

@@ -13,11 +13,13 @@ Widget AppText({
   FontWeight fontWeight = FontWeight.w500,
   String fontFamily = "Inter",
   FontStyle fontStyle = FontStyle.normal,
+  double? letterSpacing, // Add letterSpacing parameter
+  double? height, // Add height parameter (line height)
   int? maxLines,
   TextOverflow? overflow,
   Color? color,
   TextStyle? style,
-  GestureTapCallback? onTap, // Add onTap parameter
+  GestureTapCallback? onTap,
 }) {
   final textWidget = color == null
       ? Text(text,
@@ -31,6 +33,8 @@ Widget AppText({
             fontSize: size,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
+            letterSpacing: letterSpacing, // Add letter spacing
+            height: height, // Add line height
           ))
       : Text(
     text,
@@ -39,14 +43,16 @@ Widget AppText({
     overflow: overflow,
     style: style ??
         GoogleFonts.getFont(fontFamily,
-            fontSize: size,
-            decoration: underLine,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            color: color),
+          fontSize: size,
+          decoration: underLine,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          color: color,
+          letterSpacing: letterSpacing, // Add letter spacing
+          height: height, // Add line height
+        ),
   );
 
-  // Wrap with GestureDetector if onTap is provided
   return onTap != null
       ? GestureDetector(
     behavior: HitTestBehavior.translucent,
