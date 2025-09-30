@@ -14,6 +14,7 @@ class MyImages {
   static const String refresh = "assets/icons/refresh.png";
   static const String profileicon = "assets/icons/profile_icon.svg";
   static const String fingerpring = "assets/images/fingerprint.png";
+  static const String box = "assets/images/box.png";
   static const String verificationbackground = "assets/images/verification_background.svg";
 
   // Navigation Icons
@@ -26,6 +27,14 @@ class MyImages {
   static const String topbannerthree = "assets/home/top_banner_three.png";
   static const String search = "assets/icons/search.svg";
   static const String notification = "assets/icons/notification.svg";
+  static const String helpIcon = "assets/icons/help.svg";
+  static const String profileIcon = "assets/icons/manage_profile.svg";
+  static const String languageIcon = "assets/icons/permission.svg";
+  static const String starIcon = "assets/icons/star_icon.svg";
+  static const String devicesIcon = "assets/icons/stream.svg";
+  static const String profileplaceholder = "assets/icons/profile_placeholder.svg";
+  static const String profileupdatefailed = "assets/icons/profile_update_failed.png";
+  static const String profileupdated = "assets/icons/profile_updated.png";
 
 
 }

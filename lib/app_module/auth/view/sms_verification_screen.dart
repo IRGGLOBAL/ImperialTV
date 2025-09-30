@@ -49,6 +49,17 @@ class SmsVerificationScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
+
+                    Positioned(
+                      top:  20,
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back_ios, color: MyColor.colorWhite),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ),
+
                     // Content
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 20),

@@ -4,6 +4,7 @@ import 'package:imperialtv/app_module/search_screen/search_activity_controller.d
 import 'package:imperialtv/utils/custom_widget/my_color.dart';
 import 'package:imperialtv/utils/text_strings.dart';
 
+import '../../utils/Fonts/AppDimensions.dart';
 import '../../utils/Widgets/AppText.dart';
 import '../../utils/custom_widget/dimensions.dart';
 
@@ -15,9 +16,28 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF001F2D), // dark gradient bg
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        surfaceTintColor: MyColor.transparentColor,
+        backgroundColor: Color(0xFF001F2D),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: MyColor.colorWhite),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: AppText(
+          text: MyStrings.search.tr,
+          size: AppDimensions.FONT_SIZE_16,
+          fontWeight: FontWeight.w600,
+          color: MyColor.colorWhite,
+        ),
+
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(bottom: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

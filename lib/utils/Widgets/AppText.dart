@@ -8,49 +8,43 @@ import '../custom_widget/my_color.dart';
 Widget AppText({
   required String text,
   double size = AppDimensions.FONT_SIZE_18,
+
+  /// underline properties
   TextDecoration underLine = TextDecoration.none,
+  TextDecorationStyle decorationStyle = TextDecorationStyle.solid,
+  Color? decorationColor,
+
   TextAlign textAlign = TextAlign.left,
   FontWeight fontWeight = FontWeight.w500,
   String fontFamily = "Inter",
   FontStyle fontStyle = FontStyle.normal,
-  double? letterSpacing, // Add letterSpacing parameter
-  double? height, // Add height parameter (line height)
+  double? letterSpacing,
+  double? height,
   int? maxLines,
   TextOverflow? overflow,
   Color? color,
   TextStyle? style,
   GestureTapCallback? onTap,
 }) {
-  final textWidget = color == null
-      ? Text(text,
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      style: style ??
-          GoogleFonts.getFont(
-            fontFamily,
-            decoration: underLine,
-            fontSize: size,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            letterSpacing: letterSpacing, // Add letter spacing
-            height: height, // Add line height
-          ))
-      : Text(
+  final textStyle = GoogleFonts.getFont(
+    fontFamily,
+    fontSize: size,
+    fontWeight: fontWeight,
+    fontStyle: fontStyle,
+    letterSpacing: letterSpacing,
+    height: height,
+    decoration: underLine,
+    decorationStyle: decorationStyle,
+    decorationColor: decorationColor ?? color,
+    color: color,
+  );
+
+  final textWidget = Text(
     text,
     textAlign: textAlign,
     maxLines: maxLines,
     overflow: overflow,
-    style: style ??
-        GoogleFonts.getFont(fontFamily,
-          fontSize: size,
-          decoration: underLine,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          color: color,
-          letterSpacing: letterSpacing, // Add letter spacing
-          height: height, // Add line height
-        ),
+    style: style ?? textStyle,
   );
 
   return onTap != null
@@ -123,16 +117,18 @@ class MultiTxt extends StatelessWidget {
           TextSpan(
             text: firstText,
             style: TextStyle(
-                color: firstColor,
-                fontSize: 15,
-                fontFamily: firstTextfontFamily),
+              color: firstColor,
+              fontSize: 15,
+              fontFamily: firstTextfontFamily,
+            ),
           ),
           TextSpan(
             text: secondText,
             style: TextStyle(
-                fontSize: 15,
-                color: MyColor.colorBlack,
-                fontFamily: secondTextfontFamily),
+              fontSize: 15,
+              color: MyColor.colorBlack,
+              fontFamily: secondTextfontFamily,
+            ),
           ),
         ],
       ),

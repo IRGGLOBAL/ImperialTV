@@ -150,7 +150,8 @@ class FirstLoginScreen extends StatelessWidget {
                       AppText(
                         text: MyStrings.keepmesignedin.tr,
                         style: semiBoldMediumLarge.copyWith(
-                          color: MyColor.colorWhite,
+                          color: MyColor.colorWhite.withOpacity(0.7),
+                          fontWeight: FontWeight.w400,
                           fontSize: Dimensions.fontMedium,
                         ),
                       ),
@@ -173,7 +174,9 @@ class FirstLoginScreen extends StatelessWidget {
               ),
 
               const SizedBox(height: 16),
+
               // Login button (red pill)
+
               AppButton(
                 buttonName: MyStrings.login.tr,
                 buttonColor: MyColor.secondaryColor,

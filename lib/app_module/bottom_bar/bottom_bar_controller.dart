@@ -6,6 +6,8 @@ import '../home/home_content_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../search_screen/search_screen.dart';
+import '../settings/settings_view.dart';
+import '../settings/stream_and_download_view.dart';
 
 class BottomNavController extends GetxController {
   var selectedIndex = 0.obs;
@@ -26,13 +28,13 @@ class BottomNavController extends GetxController {
       'active_icon': 'assets/icons/search.svg',
     },
     {
-      'page': Center(child: Text("My Downloads")),
+      'page': StreamAndDownloadView(),
       'label': 'My Downloads',
       'icon': 'assets/icons/download.svg',
       'active_icon': 'assets/icons/download.svg',
     },
     {
-      'page': Center(child: Text("More")),
+      'page': SettingsView(),
       'label': 'More',
       'icon': 'assets/icons/more.svg',
       'active_icon': 'assets/icons/more.svg',

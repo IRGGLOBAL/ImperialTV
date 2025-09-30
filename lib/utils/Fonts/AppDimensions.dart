@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../app_imports/app_imports.dart';
 
 class AppDimensions {
+  static const double FONT_SIZE_8 = 8.0;
   static const double FONT_SIZE_10 = 10.0;
   static const double FONT_SIZE_11 = 11.0;
   static const double FONT_SIZE_12 = 12.0;

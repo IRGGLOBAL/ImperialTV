@@ -70,9 +70,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AppText(
                       text: MyStrings.beginyourjourneytoday.tr,
                       style: mediumOverLarge.copyWith(
-                        color: MyColor.colorBlack.withOpacity(0.5),
+                        color: MyColor.hintTextColor,
                         fontSize: Dimensions.fontDefault,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w500,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AppText(
                       text: MyStrings.email.tr,
                       style: mediumOverLarge.copyWith(
-                        color: MyColor.colorBlack.withOpacity(0.5),
+                        color: MyColor.primaryColor,
                         fontSize: Dimensions.fontSmall,
                         fontWeight: FontWeight.w600,
                       ),
@@ -126,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AppText(
                       text: MyStrings.phonenumber.tr,
                       style: mediumOverLarge.copyWith(
-                        color: MyColor.colorBlack.withOpacity(0.5),
+                        color: MyColor.primaryColor,
                         fontSize: Dimensions.fontSmall,
                         fontWeight: FontWeight.w600,
                       ),
@@ -171,9 +171,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 16),
 
                     AppText(
-                      text: MyStrings.enterpassword.tr,
+                      text: MyStrings.passwordpassword.tr,
                       style: mediumOverLarge.copyWith(
-                        color: MyColor.colorBlack.withOpacity(0.5),
+                        color:MyColor.primaryColor,
                         fontSize: Dimensions.fontSmall,
                         fontWeight: FontWeight.w600,
                       ),
@@ -188,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       autofillHints: [AutofillHints.email],
                       radius: 15,
                       fillColor: MyColor.colorWhite,
-                     // hintText: MyStrings.passwordhinttext.tr,
+                      hintText: MyStrings.enterpassword.tr,
                       hintTextStyle: TextStyle(color: MyColor.hintTextColor),
                       controller: controller.passwordController,
                       focusNode: controller.passwordFocusNode,
@@ -253,6 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
 
                     const SizedBox(height: 6),
+
                     // Sign Up button (red pill)
                     AppButton(
                       buttonName: MyStrings.signup.tr,
@@ -277,6 +278,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
 
                     const SizedBox(height: 12),
+
                     // Google button
                     InkWell(
                       onTap: () => controller.continueWithGoogle(),
@@ -305,6 +307,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
+
+                    const SizedBox(height: 28),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppText(
+                          text: MyStrings.donthaveanaccount.tr,
+                          style: semiBoldMediumLarge.copyWith(
+                              color: MyColor.hintTextColor,
+                              fontSize: Dimensions.fontMedium,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        SizedBox(width: 5,),
+                        AppText(
+                          text: MyStrings.login.tr,
+                          style: semiBoldMediumLarge.copyWith(
+                              color: MyColor.secondaryColor,
+                              fontSize: Dimensions.fontMedium,
+                              fontWeight: FontWeight.w600,
+                          ),
+                          onTap: (){
+                            Get.to(() => const FirstLoginScreen());
+                          }
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
                       ],
                     ),
               ),

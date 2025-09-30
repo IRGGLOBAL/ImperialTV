@@ -6,6 +6,7 @@ import '../../utils/custom_widget/dimensions.dart';
 import '../../utils/custom_widget/my_color.dart';
 import '../../utils/Images/my_images.dart';
 import '../../utils/text_strings.dart';
+import '../notifications/notification_view.dart';
 import 'home_controller.dart';
 
 class MovieDetailScreen extends StatelessWidget {
@@ -34,7 +35,9 @@ class MovieDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: MyColor.colorBlack,
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -123,14 +126,13 @@ class MovieDetailScreen extends StatelessWidget {
                           // search
                           GestureDetector(
                             onTap: (){
-                             // Get.to(()=> SearchScreen());
+                              Get.to(()=> NotificationView());
                             },
                             child: Container(
                               width: 40,
                               child: SvgPicture.asset(
                                 MyImages.notification,
                               ),
-                              //Icon(Icons.search, color: MyColor.colorWhite, size: 40),
                             ),
                           ),
 
@@ -141,22 +143,35 @@ class MovieDetailScreen extends StatelessWidget {
                   /// Title
                   Positioned(
                     bottom: 16,
-                    left: 16,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () => Get.back(),
-                          child: const Icon(Icons.arrow_back,
-                              color: Colors.white, size: 26),
-                        ),
-                        AppText(
-                          text: title,
-                          color: Colors.white,
-                          size: Dimensions.fontExtraLarge,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: Dimensions.space16),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          // Arrow back - positioned at left
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: GestureDetector(
+                              onTap: () => Get.back(),
+                              child: const Icon(Icons.arrow_back,
+                                  color: Colors.white, size: 26),
+                            ),
+                          ),
+
+                          // Title - centered
+                          Align(
+                            alignment: Alignment.center,
+                            child: AppText(
+                              text: title,
+                              color: Colors.white,
+                              size: Dimensions.fontExtraLarge,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -260,7 +275,7 @@ class MovieDetailScreen extends StatelessWidget {
                   children: [
                     _buildTab("Detail", 0),
                     _buildTab("Cast", 1),
-                    _buildTab("Showtime", 2),
+                    _buildTab("About", 2),
                   ],
                 ),
               )),
@@ -317,50 +332,246 @@ class MovieDetailScreen extends StatelessWidget {
                             ],
                           ),
                         );
-                      //   Padding(
-                      //   padding: EdgeInsets.symmetric(horizontal: Dimensions.space16),
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
-                      //       AppText(
-                      //         text: "Synopsis",
-                      //         color: Colors.white,
-                      //         size: Dimensions.fontMedium,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //       const SizedBox(height: 10),
-                      //       AppText(
-                      //         text: synopsis,
-                      //         color: Colors.white70,
-                      //         size: Dimensions.fontSmall,
-                      //         maxLines: 4,
-                      //       ),
-                      //       const SizedBox(height: 10),
-                      //       GestureDetector(
-                      //         onTap: () {},
-                      //         child: const Text(
-                      //           "Show More",
-                      //           style: TextStyle(
-                      //             color: Colors.lightBlueAccent,
-                      //             fontWeight: FontWeight.w600,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // );
+
                     case 1:
-                      return Center(
-                          child: AppText(
-                              text: "Cast Content",
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: Dimensions.space16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            AppText(
+                              text: "Directors",
                               color: Colors.white,
-                              size: 16));
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Henry Cavils, Amy Adams, Kevin Costner",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+                            Divider(height: 30,thickness: 0.5,),
+                            //const SizedBox(height: 10),
+                            AppText(
+                              text: "Cast",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 10),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Ghost of Yōtei include Erika Ishii, Durin Das, Melody Peng, Eddie Shin, and Taizo, with Ai Fairouz providing the Japanese voice for the protagonist, Atsu. The game's story follows Atsu's journey in 1603, a period of unrest in the lands surrounding Mount Yōtei.",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+
+                            const SizedBox(height: 10),
+
+                            // Reactive button widget
+                            Obx(() {
+                              // Only show button if text is long enough to need truncation
+                              if (_needsShowMore(synopsis, context)) {
+                                return GestureDetector(
+                                  onTap: () => c.toggleSynopsis(),
+                                  child: Text(
+                                    c.isSynopsisExpanded.value ? "Show Less" : "Show More",
+                                    style: TextStyle(
+                                      color: Colors.lightBlueAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink(); // Hide button if text is short
+                            }),
+
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "Networks",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Imperial TV",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "Maturity Rating",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "18+",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "Content Advisory",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Violence, Alcohol Use, Smoking, Foul Language, Sexual Content and Strobing Patterns might affect photosensitive viewers.",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "Customer Reviews",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "We don’t have any customer reviews",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+                            Divider(height: 30,thickness: 0.5,),
+
+                          ],
+                        ),
+                      );
                     case 2:
-                      return Center(
-                          child: AppText(
-                              text: "Showtime Content",
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: Dimensions.space16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            AppText(
+                              text: "Genre",
                               color: Colors.white,
-                              size: 16));
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Comedy, Drama",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+                            Divider(height: 30,thickness: 0.5,),
+                            //const SizedBox(height: 10),
+                            AppText(
+                              text: "Languages",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 10),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "Audio: English, French, Persian, Arabic\nSubtitles: English, French, Persian, Arabic, Roman, Hindi",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+
+                            const SizedBox(height: 10),
+
+                            // Reactive button widget
+                            Obx(() {
+                              // Only show button if text is long enough to need truncation
+                              if (_needsShowMore(synopsis, context)) {
+                                return GestureDetector(
+                                  onTap: () => c.toggleSynopsis(),
+                                  child: Text(
+                                    c.isSynopsisExpanded.value ? "Show Less" : "Show More",
+                                    style: TextStyle(
+                                      color: Colors.lightBlueAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink(); // Hide button if text is short
+                            }),
+
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "IMDb Rating",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "6/7/10.0",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+                            Divider(height: 30,thickness: 0.5,),
+                            AppText(
+                              text: "Release Year",
+                              color: Colors.white,
+                              size: Dimensions.fontMedium,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(height: 5),
+
+                            // Reactive text widget
+                            Obx(() => AppText(
+                              text: "2025",
+                              color: Colors.white70,
+                              size: Dimensions.fontSmall,
+                              maxLines: c.isSynopsisExpanded.value ? null : 3,
+                              overflow: c.isSynopsisExpanded.value ? TextOverflow.visible : TextOverflow.ellipsis,
+                            )),
+
+                            Divider(height: 30,thickness: 0.5,),
+
+                          ],
+                        ),
+                      );
                     default:
                       return const SizedBox.shrink();
                   }

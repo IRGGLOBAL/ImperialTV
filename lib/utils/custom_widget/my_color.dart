@@ -46,7 +46,7 @@ class MyColor {
 
   //Border
   static const Color rideBorderColor = Color(0xffBDBDBD);
-  static const Color titleColor = Color(0xff373e4a);
+  static const Color titleColor = Color(0xff6E6E6E);
   static const Color labelTextColor = Color(0xff444444);
   static const Color smallTextColor1 = Color(0xff555555);
 
@@ -68,6 +68,7 @@ class MyColor {
 
   static const Color colorWhite = Color(0xffFFFFFF);
   static const Color colorBlack = Color(0xff000000);
+  static const Color colorback = Color(0xff1A1917);
   static const Color colorGreen = Color(0xff28C76F);
   static const Color colorRed = Color(0xFFD92027);
   static const Color colorOrangemat = Color(0xFFF16224);
@@ -87,7 +88,7 @@ class MyColor {
   static const Color highPriorityPurpleColor = Color(0xFF7367F0);
   static const Color pendingColor = Colors.orange;
 
-  static const Color greenP = Color(0xFF28C76F);
+  static const Color greenP = Color(0xFF0F993E);
   static const Color containerBgColor = Color(0xffF9F9F9);
   static const Color shadowColor = Color(0xffEAEAEA);
   static const Color ticketDateColor = Color(0xff888888);
